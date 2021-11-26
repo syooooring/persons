@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
+use Database\Seeders\OwnerSeeder;
 use Illuminate\Http\Request;
 
 class OwnersController extends Controller
@@ -20,7 +22,9 @@ class OwnersController extends Controller
 
     public function index()
     {
-        dd('s');
+        $owners = Owner::select('name', 'email', 'created_at')->get();
+
+        return view('admin.owners.index', compact('owners'));
     }
 
     /**
@@ -30,7 +34,7 @@ class OwnersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.owners.create');
     }
 
     /**
